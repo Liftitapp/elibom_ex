@@ -1,0 +1,63 @@
+[
+  {
+    "request": {
+      "body": "{\"to\":\"573145552211\",\"text\":\"WHOT\",\"scheduleDate\":\"2017-06-18 19:10\"}",
+      "headers": {
+        "Accept": "application/json",
+        "Authorization": "Basic ZGV2QGxpZnRpdC5jbzozZXFwOFdiNGd1"
+      },
+      "method": "POST",
+      "options": [],
+      "request_body": "",
+      "url": "https://www.elibom.com//messages"
+    },
+    "response": {
+      "body": "{ \"scheduleId\": \"1410713\" }",
+      "headers": {
+        "Date": "Tue, 13 Jun 2017 22:58:00 GMT",
+        "Server": "Apache",
+        "Strict-Transport-Security": "max-age=63072000; includeSubdomains; preload",
+        "X-Frame-Options": "DENY",
+        "X-Content-Type-Options": "nosniff",
+        "Cache-Control": "no-cache, no-store, must-revalidate",
+        "Expires": "Thu, 01 Jan 1970 00:00:00 GMT",
+        "Pragma": "no-cache",
+        "Content-Length": "27",
+        "Set-Cookie": "visited=true;Path=/;Expires=Sun, 12-Jun-2022 22:58:00 GMT"
+      },
+      "status_code": 200,
+      "type": "ok"
+    }
+  },
+  {
+    "request": {
+      "body": "null",
+      "headers": {
+        "Accept": "application/json",
+        "Authorization": "Basic ZGV2QGxpZnRpdC5jbzozZXFwOFdiNGd1"
+      },
+      "method": "GET",
+      "options": [],
+      "request_body": "",
+      "url": "https://www.elibom.com/schedules/1410713"
+    },
+    "response": {
+      "body": "{ \"id\" : \"1410713\", \"user\" : { \"id\" : 18570, \"url\" : \"https://www.elibom.com/users/18570\" }, \"scheduledTime\": \"2017-06-18 19:10:00\", \"creationTime\": \"2017-06-13 17:58:00\", \"status\": \"scheduled\", \"isFile\": false ,\"destinations\": \"573145552211\", \"text\": \"WHOT\" }",
+      "headers": {
+        "Date": "Tue, 13 Jun 2017 22:58:01 GMT",
+        "Server": "Apache",
+        "Strict-Transport-Security": "max-age=63072000; includeSubdomains; preload",
+        "X-Frame-Options": "DENY",
+        "X-Content-Type-Options": "nosniff",
+        "Cache-Control": "no-cache, no-store, must-revalidate",
+        "Content-Type": "application/json;charset=ISO-8859-1",
+        "Expires": "Thu, 01 Jan 1970 00:00:00 GMT",
+        "Pragma": "no-cache",
+        "Content-Length": "260",
+        "Set-Cookie": "visited=true;Path=/;Expires=Sun, 12-Jun-2022 22:58:01 GMT"
+      },
+      "status_code": 200,
+      "type": "ok"
+    }
+  }
+]

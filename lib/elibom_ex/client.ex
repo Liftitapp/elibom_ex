@@ -40,9 +40,18 @@ defmodule ElibomEx.Client do
     perform_request(:GET, config, "messages/#{delivery_id}")
   end
 
+
   @doc """
-  Performs all the API calls
+  Consults the state of an scheduled sms.
+
+  Raises `ArgumentError` exception if the schedule_id is nil or empty
   """
+  def consult_scheduled_deliveries(_config, nil), do: raise ArgumentError,
+    message: "schedule_id cannot be empty or nil"
+  def consult_scheduled_deliveries(config, schedule_id) do
+    perform_request(:GET, config, "schedules/#{schedule_id}")
+  end
+
   defp perform_request(method, config, service, request_body \\ nil) do
     url = URI.parse(config.domain <> service)
     auth_token = Base.encode64("#{config.username}:#{config.password}")

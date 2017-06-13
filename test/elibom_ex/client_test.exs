@@ -3,11 +3,11 @@ defmodule ElibomEx.ClientTest do
   use ElibomEx.VcrCase
   alias ElibomEx.{Config, Client}
 
-  describe "deliver_sms/2" do
-    setup do
-      {:ok, config: Config.build!}
-    end
+  setup do
+    {:ok, config: Config.build!}
+  end
 
+  describe "deliver_sms/2" do
     test "delivers a sms", %{config: config} do
       use_cassette "dispatched_elibom_sms" do
         response =
@@ -47,10 +47,6 @@ defmodule ElibomEx.ClientTest do
   end
 
   describe "consult_delivery/2" do
-    setup do
-      {:ok, config: Config.build!}
-    end
-
     test "fetch the current state of a delivered SMS", %{config: config} do
       use_cassette "consult_delivered_sms" do
         {:ok, response} =
@@ -80,6 +76,29 @@ defmodule ElibomEx.ClientTest do
         assert response["code"] == "not_found"
         assert response["description"] != nil
         assert status_code == 404
+      end
+    end
+  end
+
+  describe "consult_scheduled_deliveries/2" do
+    test "fetch the state of a scheduled sms", %{config: config} do
+      use_cassette "scheduled_sms_state" do
+        {:ok, %{"scheduleId" => scheduled_sms}} =
+          Client.deliver_sms(
+            config,
+            %{to: "573145552211", text: "WHOT", "scheduleDate": "2017-06-18 19:10"}
+          )
+
+        {:ok, response} =
+          Client.consult_scheduled_deliveries(config, scheduled_sms)
+
+        assert Map.has_key?(response, "creationTime") == true
+        assert Map.has_key?(response, "destinations") == true
+        assert Map.has_key?(response, "id") == true
+        assert Map.has_key?(response, "scheduledTime") == true
+        assert Map.has_key?(response, "text") == true
+
+        assert response["text"] == "WHOT"
       end
     end
   end
