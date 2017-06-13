@@ -104,7 +104,7 @@ defmodule ElibomEx.ClientTest do
 
     test "Raises error if schedule_id is missing", %{config: config} do
       assert_raise ArgumentError, fn() ->
-        Client.cancel_scheduled_sms(config, nil)
+        Client.consult_delivery(config, nil)
       end
     end
   end
@@ -121,6 +121,12 @@ defmodule ElibomEx.ClientTest do
         response = Client.cancel_scheduled_sms(config, scheduled_sms)
 
         assert response == :ok
+      end
+    end
+
+    test "raises error if the schedule_id is not provided", %{config: config} do
+      assert_raise ArgumentError, fn() ->
+        Client.cancel_scheduled_sms(config, nil)
       end
     end
   end

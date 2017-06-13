@@ -4,7 +4,7 @@
       "body": "{\"to\":\"573145552211\",\"text\":\"WHOT\",\"scheduleDate\":\"2017-06-18 19:10\"}",
       "headers": {
         "Accept": "application/json",
-        "Authorization": "Basic ZGV2QGxpZnRpdC5jbzozZXFwOFdiNGd1"
+        "Authorization": "Basic YOLO"
       },
       "method": "POST",
       "options": [],

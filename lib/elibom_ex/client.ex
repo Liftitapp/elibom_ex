@@ -41,7 +41,6 @@ defmodule ElibomEx.Client do
     perform_request(:GET, config, "messages/#{delivery_id}")
   end
 
-
   @doc """
   Consults the state of an scheduled sms.
 
