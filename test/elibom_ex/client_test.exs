@@ -101,5 +101,27 @@ defmodule ElibomEx.ClientTest do
         assert response["text"] == "WHOT"
       end
     end
+
+    test "Raises error if schedule_id is missing", %{config: config} do
+      assert_raise ArgumentError, fn() ->
+        Client.cancel_scheduled_sms(config, nil)
+      end
+    end
+  end
+
+  describe "perform_request/2" do
+    test "cancels a scheduled sms", %{config: config} do
+      use_cassette "canceled_scheduled_sms" do
+        {:ok, %{"scheduleId" => scheduled_sms}} =
+          Client.deliver_sms(
+            config,
+            %{to: "573145552211", text: "WHOT", "scheduleDate": "2017-06-18 19:10"}
+          )
+
+        response = Client.cancel_scheduled_sms(config, scheduled_sms)
+
+        assert response == :ok
+      end
+    end
   end
 end

@@ -10,6 +10,7 @@ defmodule ElibomEx.Client do
   @type http_succeed :: {:ok, map()}
   @type http_error_in_request :: {:error, map(), number()}
   @type http_error_calling_service :: {:error, String.t}
+  @type http_empty_response :: :ok
 
   @doc """
   Requests to Elibom's service to dispatch a new sms.
@@ -52,6 +53,17 @@ defmodule ElibomEx.Client do
     perform_request(:GET, config, "schedules/#{schedule_id}")
   end
 
+  @doc"""
+  Cancels a scheduled sms
+
+  Raises `ArgumentError` exception if the schedule_id is nil or empty
+  """
+  def cancel_scheduled_sms(_config, nil), do: raise ArgumentError,
+    message: "schedule_id cannot be empty or nil"
+  def cancel_scheduled_sms(config, schedule_id) do
+    perform_request(:DELETE, config, "schedules/#{schedule_id}")
+  end
+
   defp perform_request(method, config, service, request_body \\ nil) do
     url = URI.parse(config.domain <> service)
     auth_token = Base.encode64("#{config.username}:#{config.password}")
@@ -60,6 +72,8 @@ defmodule ElibomEx.Client do
     body = Poison.encode!(request_body)
 
     case HTTPoison.request(method, url, body, headers) do
+      {:ok, %HTTPoison.Response{body: body, headers: _, status_code: 200}} when body == "" ->
+        :ok
       {:ok, %HTTPoison.Response{body: body, headers: _, status_code: 200}} ->
         {:ok, Poison.decode!(body)}
       {:ok, %HTTPoison.Response{body: body, headers: _, status_code: status_code}} when status_code >= 400 ->

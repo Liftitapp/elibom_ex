@@ -1,0 +1,62 @@
+[
+  {
+    "request": {
+      "body": "{\"to\":\"573145552211\",\"text\":\"WHOT\",\"scheduleDate\":\"2017-06-18 19:10\"}",
+      "headers": {
+        "Accept": "application/json",
+        "Authorization": "Basic ZGV2QGxpZnRpdC5jbzozZXFwOFdiNGd1"
+      },
+      "method": "POST",
+      "options": [],
+      "request_body": "",
+      "url": "https://www.elibom.com//messages"
+    },
+    "response": {
+      "body": "{ \"scheduleId\": \"1410730\" }",
+      "headers": {
+        "Date": "Tue, 13 Jun 2017 23:15:08 GMT",
+        "Server": "Apache",
+        "Strict-Transport-Security": "max-age=63072000; includeSubdomains; preload",
+        "X-Frame-Options": "DENY",
+        "X-Content-Type-Options": "nosniff",
+        "Cache-Control": "no-cache, no-store, must-revalidate",
+        "Expires": "Thu, 01 Jan 1970 00:00:00 GMT",
+        "Pragma": "no-cache",
+        "Content-Length": "27",
+        "Set-Cookie": "visited=true;Path=/;Expires=Sun, 12-Jun-2022 23:15:08 GMT"
+      },
+      "status_code": 200,
+      "type": "ok"
+    }
+  },
+  {
+    "request": {
+      "body": "null",
+      "headers": {
+        "Accept": "application/json",
+        "Authorization": "Basic ZGV2QGxpZnRpdC5jbzozZXFwOFdiNGd1"
+      },
+      "method": "DELETE",
+      "options": [],
+      "request_body": "",
+      "url": "https://www.elibom.com/schedules/1410730"
+    },
+    "response": {
+      "body": "",
+      "headers": {
+        "Date": "Tue, 13 Jun 2017 23:15:08 GMT",
+        "Server": "Apache",
+        "Strict-Transport-Security": "max-age=63072000; includeSubdomains; preload",
+        "X-Frame-Options": "DENY",
+        "X-Content-Type-Options": "nosniff",
+        "Cache-Control": "no-cache, no-store, must-revalidate",
+        "Expires": "Thu, 01 Jan 1970 00:00:00 GMT",
+        "Pragma": "no-cache",
+        "Content-Length": "0",
+        "Set-Cookie": "visited=true;Path=/;Expires=Sun, 12-Jun-2022 23:15:08 GMT"
+      },
+      "status_code": 200,
+      "type": "ok"
+    }
+  }
+]
