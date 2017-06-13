@@ -1,0 +1,32 @@
+[
+  {
+    "request": {
+      "body": "{\"to\":\"573142272251\",\"text\":\"Sample SMS\"}",
+      "headers": {
+        "Accept": "application/json",
+        "Authorization": "Basic YOLO"
+      },
+      "method": "post",
+      "options": [],
+      "request_body": "",
+      "url": "https://www.elibom.com//messages"
+    },
+    "response": {
+      "body": "{ \"deliveryToken\": \"1234567890\" }",
+      "headers": {
+        "Date": "Tue, 13 Jun 2017 17:06:31 GMT",
+        "Server": "Apache",
+        "Strict-Transport-Security": "max-age=63072000; includeSubdomains; preload",
+        "X-Frame-Options": "DENY",
+        "X-Content-Type-Options": "nosniff",
+        "Cache-Control": "no-cache, no-store, must-revalidate",
+        "Expires": "Thu, 01 Jan 1970 00:00:00 GMT",
+        "Pragma": "no-cache",
+        "Content-Length": "42",
+        "Set-Cookie": "visited=true;Path=/;Expires=Sun, 12-Jun-2022 17:06:31 GMT"
+      },
+      "status_code": 200,
+      "type": "ok"
+    }
+  }
+]

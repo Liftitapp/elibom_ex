@@ -12,24 +12,24 @@ defmodule ElibomEx.Mixfile do
       package: package(),
       deps: deps(),
       aliases: aliases(),
-      name: "PubNux",
+      name: "ElibomEx",
       elixirc_paths: elixirc_paths(Mix.env()),
       preferred_cli_env: preferred_cli_env(),
       source_url: "https://github.com/liftitapp/elibom_ex"
     ]
   end
 
-  defp elixirc_paths(:test), do: ["lib", "test/support"]
-  defp elixirc_paths(_),     do: ["lib"]
-
   def application do
     [extra_applications: [:logger, :httpoison]]
   end
 
+  defp elixirc_paths(:test), do: ["lib", "test/support"]
+  defp elixirc_paths(_),     do: ["lib"]
+
   defp deps do
     [
       {:poison, "~> 2.2"},
-      {:httpoison, "~> 0.9.0"},
+      {:httpoison, "~> 0.11"},
       {:exvcr, "~> 0.8", only: :test},
       {:dialyxir, "~> 0.4.1", only: :dev},
       {:credo, "~> 0.7.4", only: [:dev, :test]},
@@ -38,7 +38,7 @@ defmodule ElibomEx.Mixfile do
 
   defp description do
     """
-    A wrapper for PubNub's API
+    A wrapper for Elibom's API
     """
   end
 
