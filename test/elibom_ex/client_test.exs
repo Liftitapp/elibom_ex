@@ -4,7 +4,6 @@ defmodule ElibomEx.ClientTest do
   alias ElibomEx.{Config, Client}
 
   describe "deliver_sms/2" do
-
     setup do
       {:ok, config: Config.build!}
     end
@@ -27,6 +26,22 @@ defmodule ElibomEx.ClientTest do
           )
 
         assert response == {:ok, %{"scheduleId" => "1410585"}}
+      end
+    end
+
+    test "Raises ArgumentError if any of the required params is missing",
+      %{config: config} do
+
+      assert_raise ArgumentError, fn() ->
+        Client.deliver_sms(config, %{text: "YOLO"})
+      end
+
+      assert_raise ArgumentError, fn() ->
+        Client.deliver_sms(config, %{})
+      end
+
+      assert_raise ArgumentError, fn() ->
+        Client.deliver_sms(config, %{to: "572222222"})
       end
     end
   end

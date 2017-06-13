@@ -12,16 +12,25 @@ defmodule ElibomEx.Client do
   @type http_error_calling_service :: {:error, String.t}
 
   @doc """
-  Requests to Elibom's service to dispatch a new sms
+  Requests to Elibom's service to dispatch a new sms.
+
+  Raises `ArgumentError`exception when one or more of the required parameters
+  are nil or empty.
   """
   @spec deliver_sms(%Config{}, map) ::
-    {:ok, map()} | {:error, String.t} | {:error, String.t}
+    http_succeed() | http_error_in_request() | http_error_calling_service()
   def deliver_sms(config, request_body) do
+    unless Map.get(request_body, :to), do: raise ArgumentError,
+      message: "username not specified"
+    unless Map.get(request_body, :text), do: raise ArgumentError,
+      message: "password not specified"
+
     perform_request(:POST, config, "/messages", request_body)
   end
 
   @doc """
   Consults the current state of an already sent sms.
+
   Raises `ArgumentError`exception if the delivery_id is nil or empty
   """
   @spec consult_delivery(%Config{}, String.t) ::
@@ -31,6 +40,9 @@ defmodule ElibomEx.Client do
     perform_request(:GET, config, "messages/#{delivery_id}")
   end
 
+  @doc """
+  Performs all the API calls
+  """
   defp perform_request(method, config, service, request_body \\ nil) do
     url = URI.parse(config.domain <> service)
     auth_token = Base.encode64("#{config.username}:#{config.password}")
