@@ -13,16 +13,16 @@ defmodule ElibomEx.Config do
   @doc """
   Fetch environmental data if not found it raises an Exception
   """
-  @spec build! :: t
+  @spec build! :: t | no_return()
   def build! do
     %{
-      username: fetch_variable(:username),
-      password: fetch_variable(:password),
+      username: fetch_variable!(:username),
+      password: fetch_variable!(:password),
       domain: "https://www.elibom.com/"
     }
   end
 
-  defp fetch_variable(value) do
+  defp fetch_variable!(value) do
     Application.get_env(:elibom_ex, value) ||
       raise(ArgumentError, message: "#{value} not specified")
   end

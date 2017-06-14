@@ -1,5 +1,17 @@
 defmodule ElibomEx do
+  @moduledoc """
+  Base module for interacting with Elibom's API. Elibom's credentials must
+  be provided in your applications project's configuration.
 
+    ## Configuration
+    You must provide a configuration which includes your `username` and `password`.
+
+    ```
+    config :elibom_ex,
+      username: "user@example.com",
+      password: "elibom_pass"
+    ```
+  """
   alias ElibomEx.Client
 
   def send_sms(body), do: Client.deliver_sms(body)

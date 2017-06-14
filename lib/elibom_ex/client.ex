@@ -114,7 +114,7 @@ defmodule ElibomEx.Client do
   end
 
   defp perform_request(method, service, request_body \\ nil) do
-    config = Config.build!
+    config = Config.build!()
 
     url = URI.parse(config.domain <> service)
 
