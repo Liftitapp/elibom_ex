@@ -4,24 +4,26 @@ defmodule ElibomEx.Config do
   All settings also accept `{:system, "ENV_VAR_NAME"}` to read their
   values from environment variables at runtime.
   """
-  alias __MODULE__
-  defstruct username: Application.get_env(:elibom_ex, :username),
-            password: Application.get_env(:elibom_ex, :password),
-            domain: nil
 
   @typedoc """
   Represents a config structure
   """
-  @type t ::  %Config{username: String.t, password: String.t , domain: String.t}
+  @type t ::  %{username: String.t, password: String.t , domain: String.t}
 
   @doc """
   Fetch environmental data if not found it raises an Exception
   """
   @spec build! :: t
   def build! do
-    unless Map.get(%Config{}, :username), do: raise ArgumentError, message: "username not specified"
-    unless Map.get(%Config{}, :password), do: raise ArgumentError, message: "password not specified"
+    %{
+      username: fetch_variable(:username),
+      password: fetch_variable(:password),
+      domain: "https://www.elibom.com/"
+    }
+  end
 
-    %Config{domain: "https://www.elibom.com/"}
+  defp fetch_variable(value) do
+    Application.get_env(:elibom_ex, value) ||
+      raise(ArgumentError, message: "#{value} not specified")
   end
 end

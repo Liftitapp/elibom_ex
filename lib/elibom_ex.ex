@@ -1,18 +1,16 @@
 defmodule ElibomEx do
-  @moduledoc """
-  Documentation for ElibomEx.
-  """
 
-  @doc """
-  Hello world.
+  alias ElibomEx.Client
 
-  ## Examples
+  def send_sms(body), do: Client.deliver_sms(body)
 
-      iex> ElibomEx.hello
-      :world
+  def show_sms(id), do: Client.consult_delivery(id)
 
-  """
-  def hello do
-    :world
-  end
+  def show_scheduled_sms(id), do: Client.consult_scheduled_deliveries(id)
+
+  def cancel_scheduled_sms(id), do: Client.cancel_scheduled_sms(id)
+
+  def show_account, do: Client.consult_account()
+
+  def show_users(id \\ nil), do: Client.consult_users(id)
 end
