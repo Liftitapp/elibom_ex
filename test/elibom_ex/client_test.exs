@@ -139,4 +139,17 @@ defmodule ElibomEx.ClientTest do
       end
     end
   end
+
+  describe "consult_account/1" do
+    test "retrieves the actual account state", %{config: config} do
+      use_cassette "consult_account_request" do
+        {:ok, response} = Client.consult_account(config)
+
+        assert Map.has_key?(response, "credits") == true
+        assert Map.has_key?(response, "name") == true
+        assert Map.has_key?(response, "owner") == true
+        assert Map.has_key?(response, "type") == true
+      end
+    end
+  end
 end

@@ -1,0 +1,33 @@
+[
+  {
+    "request": {
+      "body": "null",
+      "headers": {
+        "Accept": "application/json",
+        "Authorization": "Basic YOLO"
+      },
+      "method": "GET",
+      "options": [],
+      "request_body": "",
+      "url": "https://www.elibom.com/account"
+    },
+    "response": {
+      "body": "{ \"name\": \"liftit\", \"type\": \"test\" , \"credits\": 2 , \"owner\": { \"id\": 18570 , \"url\": \"https://www.elibom.com/users/18570\" } }",
+      "headers": {
+        "Date": "Wed, 14 Jun 2017 00:32:52 GMT",
+        "Server": "Apache",
+        "Strict-Transport-Security": "max-age=63072000; includeSubdomains; preload",
+        "X-Frame-Options": "DENY",
+        "X-Content-Type-Options": "nosniff",
+        "Cache-Control": "no-cache, no-store, must-revalidate",
+        "Content-Type": "application/json;charset=ISO-8859-1",
+        "Expires": "Thu, 01 Jan 1970 00:00:00 GMT",
+        "Pragma": "no-cache",
+        "Content-Length": "124",
+        "Set-Cookie": "visited=true;Path=/;Expires=Mon, 13-Jun-2022 00:32:52 GMT"
+      },
+      "status_code": 200,
+      "type": "ok"
+    }
+  }
+]
