@@ -19,7 +19,10 @@ defmodule ElibomEx.Client do
   are nil or empty.
   """
   @spec deliver_sms(%Config{}, map) ::
-    http_succeed() | http_error_in_request() | http_error_calling_service()
+    http_succeed() |
+    http_error_in_request() |
+    http_error_calling_service() |
+    http_empty_response()
   def deliver_sms(config, request_body) do
     unless Map.get(request_body, :to), do: raise ArgumentError,
       message: "username not specified"
@@ -35,7 +38,10 @@ defmodule ElibomEx.Client do
   Raises `ArgumentError`exception if the delivery_id is nil or empty
   """
   @spec consult_delivery(%Config{}, String.t) ::
-    http_succeed() | http_error_in_request() | http_error_calling_service()
+    http_succeed() |
+    http_error_in_request() |
+    http_error_calling_service() |
+    http_empty_response()
   def consult_delivery(_config, nil), do: raise ArgumentError,
     message: "delivery_id cannot be empty or nil"
   def consult_delivery(config, delivery_id) do
@@ -47,6 +53,11 @@ defmodule ElibomEx.Client do
 
   Raises `ArgumentError` exception if the schedule_id is nil or empty
   """
+  @spec consult_scheduled_deliveries(%Config{}, String.t) ::
+    http_succeed() |
+    http_error_in_request() |
+    http_error_calling_service() |
+    http_empty_response()
   def consult_scheduled_deliveries(_config, nil), do: raise ArgumentError,
     message: "schedule_id cannot be empty or nil"
   def consult_scheduled_deliveries(config, schedule_id) do
@@ -58,6 +69,11 @@ defmodule ElibomEx.Client do
 
   Raises `ArgumentError` exception if the schedule_id is nil or empty
   """
+  @spec cancel_scheduled_sms(%Config{}, String.t) ::
+    http_succeed() |
+    http_error_in_request() |
+    http_error_calling_service() |
+    http_empty_response()
   def cancel_scheduled_sms(_config, nil), do: raise ArgumentError,
     message: "schedule_id cannot be empty or nil"
   def cancel_scheduled_sms(config, schedule_id) do
@@ -67,6 +83,11 @@ defmodule ElibomEx.Client do
   @doc"""
   consults account details
   """
+  @spec consult_account(%Config{}) ::
+    http_succeed() |
+    http_error_in_request() |
+    http_error_calling_service() |
+    http_empty_response()
   def consult_account(config) do
     perform_request(:GET, config, "account")
   end
