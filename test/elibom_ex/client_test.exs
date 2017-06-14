@@ -10,22 +10,22 @@ defmodule ElibomEx.ClientTest do
   describe "deliver_sms/2" do
     test "delivers a sms", %{config: config} do
       use_cassette "dispatched_elibom_sms" do
-        response =
+        {:ok, response} =
           Client.deliver_sms(config, %{to: "573142222222", text: "Sample SMS"})
 
-          assert response == {:ok, %{"deliveryToken" => "1857014352691220612"}}
+        assert response == %{"deliveryToken" => response["deliveryToken"]}
       end
     end
 
     test "function supports message scheduling", %{config: config} do
       use_cassette "dispatched_scheduled_sms" do
-        response =
+        {:ok, response} =
           Client.deliver_sms(
             config,
             %{to: "573142222222", text: "Sample SMS", "scheduleDate": "2017-06-18 19:10"}
           )
 
-        assert response == {:ok, %{"scheduleId" => "1410585"}}
+        assert response == %{"scheduleId" => response["scheduleId"]}
       end
     end
 
@@ -121,6 +121,15 @@ defmodule ElibomEx.ClientTest do
         response = Client.cancel_scheduled_sms(config, scheduled_sms)
 
         assert response == :ok
+      end
+    end
+
+    test "returns HTTP 404 status if sms cannot be found", %{config: config} do
+      use_cassette "canceled_sms_not_found" do
+        response = Client.cancel_scheduled_sms(config, "0000")
+
+        assert response ==
+          {:error, %{"code" => "not_found", "description" => "null"}, 404}
       end
     end
 

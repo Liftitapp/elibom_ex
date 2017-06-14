@@ -26,7 +26,7 @@ defmodule ElibomEx.Client do
     unless Map.get(request_body, :text), do: raise ArgumentError,
       message: "password not specified"
 
-    perform_request(:POST, config, "/messages", request_body)
+    perform_request(:POST, config, "messages", request_body)
   end
 
   @doc """
@@ -36,7 +36,8 @@ defmodule ElibomEx.Client do
   """
   @spec consult_delivery(%Config{}, String.t) ::
     http_succeed() | http_error_in_request() | http_error_calling_service()
-  def consult_delivery(_config, nil), do: raise ArgumentError, message: "delivery_id cannot be empty or nil"
+  def consult_delivery(_config, nil), do: raise ArgumentError,
+    message: "delivery_id cannot be empty or nil"
   def consult_delivery(config, delivery_id) do
     perform_request(:GET, config, "messages/#{delivery_id}")
   end
@@ -61,6 +62,13 @@ defmodule ElibomEx.Client do
     message: "schedule_id cannot be empty or nil"
   def cancel_scheduled_sms(config, schedule_id) do
     perform_request(:DELETE, config, "schedules/#{schedule_id}")
+  end
+
+  @doc"""
+  consults account details
+  """
+  def consult_account(config) do
+    perform_request(:GET, config, "account")
   end
 
   defp perform_request(method, config, service, request_body \\ nil) do
