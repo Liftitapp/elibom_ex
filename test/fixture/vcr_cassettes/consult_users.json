@@ -1,0 +1,33 @@
+[
+  {
+    "request": {
+      "body": "null",
+      "headers": {
+        "Accept": "application/json",
+        "Authorization": "Basic YOLO"
+      },
+      "method": "GET",
+      "options": [],
+      "request_body": "",
+      "url": "https://www.elibom.com/users"
+    },
+    "response": {
+      "body": "[ { \"id\": 28570, \"name\": \"Chuck Norris Madrid\", \"email\": \"dev@liftit.co\", \"status\": \"active\" } ]",
+      "headers": {
+        "Date": "Wed, 14 Jun 2017 15:47:36 GMT",
+        "Server": "Apache",
+        "Strict-Transport-Security": "max-age=63072000; includeSubdomains; preload",
+        "X-Frame-Options": "DENY",
+        "X-Content-Type-Options": "nosniff",
+        "Cache-Control": "no-cache, no-store, must-revalidate",
+        "Content-Type": "application/json;charset=ISO-8859-1",
+        "Expires": "Thu, 01 Jan 1970 00:00:00 GMT",
+        "Pragma": "no-cache",
+        "Content-Length": "103",
+        "Set-Cookie": "visited=true;Path=/;Expires=Mon, 13-Jun-2022 15:47:36 GMT"
+      },
+      "status_code": 200,
+      "type": "ok"
+    }
+  }
+]

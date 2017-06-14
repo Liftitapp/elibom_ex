@@ -152,4 +152,17 @@ defmodule ElibomEx.ClientTest do
       end
     end
   end
+
+  describe "consult_users/1" do
+    test "fetch related account users", %{config: config} do
+      use_cassette "consult_users" do
+        {:ok, response} = Client.consult_users(config)
+
+        assert Map.has_key?(hd(response), "email") == true
+        assert Map.has_key?(hd(response), "id") == true
+        assert Map.has_key?(hd(response), "name") == true
+        assert Map.has_key?(hd(response), "status") == true
+      end
+    end
+  end
 end

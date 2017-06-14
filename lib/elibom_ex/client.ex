@@ -92,6 +92,18 @@ defmodule ElibomEx.Client do
     perform_request(:GET, config, "account")
   end
 
+  @doc """
+  Fetch users attached to the current session
+  """
+  @spec consult_users(%Config{}) ::
+    http_succeed() |
+    http_error_in_request() |
+    http_error_calling_service() |
+    http_empty_response()
+  def consult_users(config) do
+    perform_request(:GET, config, "users")
+  end
+
   defp perform_request(method, config, service, request_body \\ nil) do
     url = URI.parse(config.domain <> service)
     auth_token = Base.encode64("#{config.username}:#{config.password}")
