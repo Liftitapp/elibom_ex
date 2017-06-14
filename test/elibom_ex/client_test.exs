@@ -164,5 +164,14 @@ defmodule ElibomEx.ClientTest do
         assert Map.has_key?(hd(response), "status") == true
       end
     end
+
+    test "Fails if the user does not exist in Elibom service", %{config: config} do
+      use_cassette "consult_user_by_id" do
+        {:error, response, status_code} = Client.consult_users(config, "-1")
+
+        assert response == %{"code" => "not_found", "description" => "null"}
+        assert status_code == 404
+      end
+    end
   end
 end

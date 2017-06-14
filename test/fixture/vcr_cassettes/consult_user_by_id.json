@@ -1,0 +1,32 @@
+[
+  {
+    "request": {
+      "body": "null",
+      "headers": {
+        "Accept": "application/json",
+        "Authorization": "Basic YOLO"
+      },
+      "method": "GET",
+      "options": [],
+      "request_body": "",
+      "url": "https://www.elibom.com/users/-1"
+    },
+    "response": {
+      "body": "{ \"code\": \"not_found\", \"description\": \"null\" }",
+      "headers": {
+        "Date": "Wed, 14 Jun 2017 16:23:00 GMT",
+        "Server": "Apache",
+        "Strict-Transport-Security": "max-age=63072000; includeSubdomains; preload",
+        "X-Frame-Options": "DENY",
+        "X-Content-Type-Options": "nosniff",
+        "Cache-Control": "no-cache, no-store, must-revalidate",
+        "Expires": "Thu, 01 Jan 1970 00:00:00 GMT",
+        "Pragma": "no-cache",
+        "Content-Length": "46",
+        "Set-Cookie": "visited=true;Path=/;Expires=Mon, 13-Jun-2022 16:23:00 GMT"
+      },
+      "status_code": 404,
+      "type": "ok"
+    }
+  }
+]
