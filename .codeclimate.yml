@@ -1,0 +1,9 @@
+engines:
+  credo:
+    enabled: true
+  duplication:
+    enabled: true
+    config:
+      languages:
+      - elixir:
+      	  mass_threshold: 30
