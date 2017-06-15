@@ -7,3 +7,11 @@ engines:
       languages:
       - elixir:
       	  mass_threshold: 30
+
+ratings:
+  paths:
+  - app/**
+  - lib/**
+  - "**.ex"
+  - "**.exs"
+- _build
