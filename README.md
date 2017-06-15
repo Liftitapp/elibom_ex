@@ -1,5 +1,7 @@
 # ElibomEx
 
+[![Build Status](https://travis-ci.org/Liftitapp/elibom_ex.svg?branch=master)](https://travis-ci.org/Liftitapp/elibom_ex)
+
 Elixir wrapper for delivering and managing your Elibom's API.
 
 ## Installation
@@ -35,8 +37,8 @@ variable manager, you can create a `.env` file in your project with the
 following content:
 
 ```bash
-export ELIBOM_USERNAME=<account sid here>
-export ELIBOM_PASSWORD=<auth token>
+export ELIBOM_USERNAME=<account email here>
+export ELIBOM_PASSWORD=<api token>
 ```
 
 Then, just be sure to run `source .env` in your shell before compiling your
