@@ -13,12 +13,12 @@ defmodule ElibomEx.Config do
   @doc """
   Fetch environmental data if not found it raises an Exception
   """
-  @spec build!(String.t) :: t | no_return()
-  def build!(domain \\ "https://www.elibom.com/") do
+  @spec build! :: t | no_return()
+  def build! do
     %{
       username: fetch_variable!(:username),
       password: fetch_variable!(:password),
-      domain: domain
+      domain: Application.get_env(:elibom_ex, :custom_url) || "https://www.elibom.com/"
     }
   end
 
