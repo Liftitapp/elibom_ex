@@ -20,3 +20,5 @@ erl_crash.dump
 *.ez
 
 .env
+
+.elixir_ls/

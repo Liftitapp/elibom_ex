@@ -15,15 +15,21 @@ defmodule ElibomEx.Config do
   """
   @spec build! :: t | no_return()
   def build! do
+    url = get_custom_url()
+    require IEx
+    IEx.pry
     %{
       username: fetch_variable!(:username),
       password: fetch_variable!(:password),
-      domain: Application.get_env(:elibom_ex, :custom_url) || "https://www.elibom.com/"
+      domain: url
     }
   end
 
+  def get_custom_url do
+    Application.get_env(:elibom_ex, :custom_url) || "https://www.elibom.com/"
+  end
+
   defp fetch_variable!(value) do
-    Application.get_env(:elibom_ex, value) ||
-      raise(ArgumentError, message: "#{value} not specified")
+    Application.get_env(:elibom_ex, value) || raise(ArgumentError, message: "#{value} not specified")
   end
 end
