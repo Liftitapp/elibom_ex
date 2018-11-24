@@ -3,6 +3,7 @@ defmodule ElibomEx.Client do
   Wrap api calls
   """
   alias ElibomEx.Config
+  require Logger
 
   @typedoc """
   Describes the different type of responses from Elibom's API
@@ -117,6 +118,11 @@ defmodule ElibomEx.Client do
     config = Config.build!()
 
     url = URI.parse(config.domain <> service)
+    Logger.info("-------------------------------------")
+    Logger.info(url)
+    Logger.info(config.username)
+    Logger.info(config.password)
+    Logger.info("-------------------------------------")
 
     auth_token = Base.encode64("#{config.username}:#{config.password}")
 
@@ -130,8 +136,10 @@ defmodule ElibomEx.Client do
       {:ok, %HTTPoison.Response{body: body, headers: _, status_code: 200}} ->
         {:ok, Poison.decode!(body)}
       {:ok, %HTTPoison.Response{body: body, headers: _, status_code: status_code}} when status_code >= 400 ->
+        Logger.warn(body)
         {:error, Poison.decode!(body), status_code}
       {:error, %HTTPoison.Error{reason: reason}} ->
+        Logger.warn(reason)
         {:error, "Unable to comunicate with Elibom service. Reason: #{reason}"}
     end
   end
