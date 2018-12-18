@@ -9,6 +9,10 @@ defmodule ElibomEx.VcrCase do
   end
 
   setup_all do
+    HTTPoison.start
+  end
+
+  setup do
     ExVCR.Config.cassette_library_dir("test/fixture/vcr_cassettes")
     :ok
   end
