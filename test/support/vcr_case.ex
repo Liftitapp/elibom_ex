@@ -1,5 +1,4 @@
 defmodule ElibomEx.VcrCase do
-
   use ExUnit.CaseTemplate
 
   using do
@@ -9,7 +8,7 @@ defmodule ElibomEx.VcrCase do
   end
 
   setup_all do
-    HTTPoison.start
+    HTTPoison.start()
   end
 
   setup do

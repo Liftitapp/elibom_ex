@@ -8,7 +8,7 @@ defmodule ElibomEx.Config do
   @typedoc """
   Represents a config structure
   """
-  @type t ::  %{username: String.t, password: String.t , domain: String.t}
+  @type t :: %{username: String.t(), password: String.t(), domain: String.t()}
 
   @doc """
   Fetch environmental data if not found it raises an Exception
@@ -16,8 +16,7 @@ defmodule ElibomEx.Config do
   @spec build! :: t | no_return()
   def build! do
     url = get_custom_url()
-    require IEx
-    IEx.pry
+
     %{
       username: fetch_variable!(:username),
       password: fetch_variable!(:password),
@@ -30,6 +29,7 @@ defmodule ElibomEx.Config do
   end
 
   defp fetch_variable!(value) do
-    Application.get_env(:elibom_ex, value) || raise(ArgumentError, message: "#{value} not specified")
+    Application.get_env(:elibom_ex, value) ||
+      raise(ArgumentError, message: "#{value} not specified")
   end
 end
